@@ -219,5 +219,252 @@ undefined
 > varTest
 4711
 ```
+# Funktionen
+
+Einfache Funktionen sind schnell begriffen, aber einfach um es kurz vorzustellen.
+Es gibt aber keine Unterscheidung zwischen Prozeduren und Funktionen. Eigentlich
+sind alles Funktionen können aber auch rein Prozeduren sein.
+
+> function machwas() {
+... console.log('Hallo')
+... }
+undefined
+> machwas
+[Function: machwas]
+> machwas()
+Hallo
+undefined
+> function gibwas(n) {
+... return n*2
+... }
+undefined
+> gibwas
+[Function: gibwas]
+> gibwas(2)
+4
+> gibwas()
+NaN
+```
+
+Da Funktionen aber auch Variablen sind können Funktionen auch anderen Variablen
+zugewiesen werden.
+
+```
+> x = gibwas
+[Function: gibwas]
+> x()
+NaN
+> x(3)
+6
+> 
+```
+
 # Objekte
-... Jetzt wird es spanned, kommt noch
+Ein Objekt ist einfach eine kommagetrennte Auflistung von Key / Value Paaren.
+
+Beispiel
+
+```js
+let meinObjekt = {
+    Nachname: 'Müller',
+    Vorname: 'Thomas',
+    Beruf: 'Fussballer'
+}
+```
+
+Geschachtelte Objekte gehen auch:
+
+
+```js
+let meinObjekt = {
+    Nachname: 'Hollfelder',
+    Vorname: 'Jürgen',
+    Adresse: {
+        Strasse: 'Löwenstr. 29',
+        PLZ: '70597',
+        Ort: 'Stuttgart',
+        Land: 'Deutschland'
+    }
+}
+```
+
+Zugriff mit Punktnotation oder per Index
+
+```js
+> meinObjekt.Adresse.Strasse
+'Löwenstr. 29'
+> meinObjekt['Adresse']['Ort']
+'Stuttgart'
+> 
+```
+Möglich ist es aber auch eine "Klasse" zu erstellen. Allerdings heisst das
+Prototyp in der Javascript Welt und ist tatsächlich auch ein klein wenig etwas
+anderes:
+
+```js
+> function Person(name, beruf) {
+...     this.name = name
+...     this.beruf = beruf
+... }
+undefined
+> let jemand = new Person('Dirk Nowitzki', 'Basketballer')
+undefined
+> jemand.name
+'Dirk Nowitzki'
+> jemand
+Person { name: 'Dirk Nowitzki', beruf: 'Basketballer' }
+```
+
+# Array
+
+Mit Objekten kann man zwar noch weit mehr anfangenk, dazu aber noch später mehr.
+Jetzt erst einmal ein Ausflug zu Array
+```js
+> let meinArray = ['Hund', 'Katze', 'Maus']
+undefined
+> meinArray
+[ 'Hund', 'Katze', 'Maus' ]
+> meinArray[0]
+'Hund'
+> meinArray[-1]
+undefined
+> meinArray[100]
+undefined
+> meinArray[2]
+'Maus'
+```
+
+Total logisch. Aber zählen fängt bei 0 an.
+
+Zufügen geht mit `push`, zählen mit `length` und es gibt noch eine Menge 
+weiterer, die man unter 
+https://developer.mozilla.org/de/docs/Web/JavaScript/Eine_Wiedereinfuehrung_in_JavaScript#Arrays 
+gut nachlesen kann.
+
+Erwähnenswert ist noch `forEach`:
+
+```js
+> meinArray.forEach( function (meinElement) { console.log(meinElement) })
+Hund
+Katze
+Maus
+undefined
+```
+
+Es wird als Parameter eine Funktion übergeben. Funktionen werden ja wie Variablen
+behandelt. Daher funktioniert das.
+
+Im ES6 gibt es dann noch die arrow Notation. Ist kürzer hat in Spezialfällen 
+auch ein paar andere Vorteile:
+
+```js
+> meinArray.forEach( (meinElement) => { console.log(meinElement) })
+Hund
+Katze
+Maus
+undefined
+> 
+```
+
+# Funktionen in Objekten
+
+```js
+meinObjekt = {
+    vorname: 'Donald',
+    nachname: 'Duck',
+    name: function() {
+        return this.vorname + ' ' + this.nachname
+    }
+}
+
+> meinObjekt
+{ vorname: 'Donald', nachname: 'Duck', name: [Function] }
+> meinObjekt.name
+[Function]
+> meinObjekt.name()
+'Donald Duck'
+```
+Wenn aber Funktionen in Objekte grösser werden, will man ja nicht jedesmal
+die ganze Funktion da drin haben usw.
+
+Da geht man dann wie folgt vor. Zuerst wird mal eine Funktion erstellt, mit 
+der man ein Objekt erstellen kann:
+
+```js
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+}
+
+> p = new Person('Mickey', 'Maus')
+Person { first: 'Mickey', last: 'Maus' }
+> p
+Person { first: 'Mickey', last: 'Maus' }
+> p.first
+'Mickey'
+```
+
+Dann kann eine Prototyp Funktion erstellt werden. Z.B. 
+
+```js
+Person.prototype.fullName = function() {
+  return this.first + ' ' + this.last; 
+}
+
+> p.fullName()
+'Mickey Maus'
+```
+
+So kann man eben doch in gewisser weise Klassen definieren. Mit ES6 wurde der 
+Syntax erweitert. D.h. man kann es auch so machen:
+
+```js
+class PersonenKlasse {
+    constructor(vorname, nachname) {
+        this.vorname = vorname
+        this.nachname = nachname
+    }
+    fullName() {
+        return this.vorname + ' ' + this.nachname
+    }
+}
+> let meinePerson = new PersonenKlasse('Max', 'Mustermann')
+undefined
+> meinePerson
+PersonenKlasse { vorname: 'Max', nachname: 'Mustermann' }
+> meinePerson.fullName()
+'Max Mustermann'
+> 
+```
+
+Mehr dazu hier: https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Klassen
+
+# Closures
+
+Das ist etwas das man häufiger antrifft und oft auch erst einmal missverstanden wird.
+Aber es geht zunächst einmal um nichts anders als dass ein Closure eine Funktion 
+ist, die in der Funktion eine Variable benutzt, die sie aus dem Kontext kennt.
+Javascript speichert also den ganzen Kontext mit.
+
+Beispiel:
+
+```js
+> function aussen(aussenWert) {
+... const pi = 3.14
+... return function innen(innenWert) {
+..... console.log('ich kenne pi',pi, 'und aussenWert', aussenWert, 'und innenWert', innenWert)
+..... }
+... }
+undefined
+> x=aussen(5)
+[Function: innen]
+> x(1234)
+ich kenne pi 3.14 und aussenWert 5 und innenWert 1234
+undefined
+> y=aussen(9999)
+[Function: innen]
+> y(8888)
+ich kenne pi 3.14 und aussenWert 9999 und innenWert 8888
+undefined
+> 
+```
