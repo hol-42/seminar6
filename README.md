@@ -224,7 +224,7 @@ undefined
 Einfache Funktionen sind schnell begriffen, aber einfach um es kurz vorzustellen.
 Es gibt aber keine Unterscheidung zwischen Prozeduren und Funktionen. Eigentlich
 sind alles Funktionen können aber auch rein Prozeduren sein.
-
+```js
 > function machwas() {
 ... console.log('Hallo')
 ... }
