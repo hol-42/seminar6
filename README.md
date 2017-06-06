@@ -105,7 +105,7 @@ undefined
 ```
 # null und undefined
 Es gibt ein Unterschied zwischen `null` und `undefined`. Um das genau
-zu verstehen muss man verstehen muss man kurz sich vergegenwärtigen, dass
+zu verstehen, muss man sich vergegenwärtigen, dass
 Javascript nicht erwartet, dass man eine Variable definiert und wenn
 man sie definiert, dass man dann den Typ angibt. Der Grund weshalb TypeScript
 recht populär ist. Beispiel (`var` definiert global, `let` seit ES2015 
@@ -150,9 +150,9 @@ Boolsche Operatoren:
 - `||` ist `OR`
 - `!` ist `NOT`
 
-Es kann jeder Wert zu einem Boolschen Wert konvertiert werden, dabei gilt:
+Es kann jeder Wert zu einem boolschen Wert konvertiert werden, dabei gilt:
 
-- false , 0, leere Strings (""), NaN , null , und undefined werden zu false
+- false , 0, leere Strings (""), NaN, null und undefined werden zu false
 - Alle anderen Werte werden true
 
 Beispiel:
@@ -167,7 +167,7 @@ false
 true
 ```
 Vergleiche erfolgen mit `==` bzw. `===`. Letzteres ist präzisser, weil es 
-auch den Datentypen in den Verleich mit einschliesst.
+auch den Datentypen in den Vergleich mit einschliesst.
 ```js
 > varX = "1"
 '1'
@@ -203,7 +203,7 @@ Aber es gibt einen `iff` und der ist oft sehr praktisch:
 'gleich'
 ```
 
-Auch ein NVL kann man machen indem man ausnutzt, dass aufgehöt wird
+Auch ein NVL kann man machen, indem man ausnutzt, dass aufgehört wird
 wenn ein Wert `true` ist.
 ```js
 > let varUndefined
@@ -246,7 +246,7 @@ undefined
 NaN
 ```
 
-Da Funktionen aber auch Variablen sind können Funktionen auch anderen Variablen
+Da Funktionen aber auch Variablen sind, können Funktionen auch anderen Variablen
 zugewiesen werden.
 
 ```
@@ -317,7 +317,7 @@ Person { name: 'Dirk Nowitzki', beruf: 'Basketballer' }
 
 # Array
 
-Mit Objekten kann man zwar noch weit mehr anfangenk, dazu aber noch später mehr.
+Mit Objekten kann man zwar noch weit mehr anfangen, dazu aber noch später mehr.
 Jetzt erst einmal ein Ausflug zu Array
 ```js
 > let meinArray = ['Hund', 'Katze', 'Maus']
@@ -354,7 +354,7 @@ undefined
 Es wird als Parameter eine Funktion übergeben. Funktionen werden ja wie Variablen
 behandelt. Daher funktioniert das.
 
-Im ES6 gibt es dann noch die arrow Notation. Ist kürzer hat in Spezialfällen 
+Im ES6 gibt es dann noch die Pfeil-Notation (Arrow Notation). Ist kürzer und hat in Spezialfällen 
 auch ein paar andere Vorteile:
 
 ```js
@@ -387,7 +387,7 @@ meinObjekt = {
 Wenn aber Funktionen in Objekte grösser werden, will man ja nicht jedesmal
 die ganze Funktion da drin haben usw.
 
-Da geht man dann wie folgt vor. Zuerst wird mal eine Funktion erstellt, mit 
+Da geht man dann wie folgt vor: Zuerst wird mal eine Funktion erstellt, mit 
 der man ein Objekt erstellen kann:
 
 ```js
@@ -442,7 +442,7 @@ Mehr dazu hier: https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/K
 # Closures
 
 Das ist etwas das man häufiger antrifft und oft auch erst einmal missverstanden wird.
-Aber es geht zunächst einmal um nichts anders als dass ein Closure eine Funktion 
+Aber es geht zunächst einmal um nichts anders, als dass ein Closure eine Funktion 
 ist, die in der Funktion eine Variable benutzt, die sie aus dem Kontext kennt.
 Javascript speichert also den ganzen Kontext mit.
 
