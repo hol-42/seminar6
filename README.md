@@ -181,10 +181,10 @@ false
 # Kontrollstrukturen
 Vom Syntax her ähnlich wie andere C ähnliche Sprachen:
 ```js
-if (a=b) {
+if (a==b) {
     console.log('a ist gleich b')
 }
-else if (a=c) {
+else if (a==c) {
     console.log('a ist gleich c')
 }
 else {
